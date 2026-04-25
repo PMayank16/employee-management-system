@@ -1,11 +1,52 @@
-# frontend
-frontend/node_modules
-frontend/.next
+# ========================
+# FRONTEND (Next.js)
+# ========================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env*
 
-# backend
-backend/target
-backend/.idea
+# ========================
+# BACKEND (Spring Boot)
+# ========================
+backend/target/
+backend/*.log
+backend/.idea/
+backend/.mvn/wrapper/maven-wrapper.jar
 
-# system
-.env
+# ========================
+# JAVA
+# ========================
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# ========================
+# IDEs
+# ========================
+.vscode/
+.idea/
+*.iml
+
+# ========================
+# OS FILES
+# ========================
 .DS_Store
+Thumbs.db
+
+# ========================
+# ENV & SECRETS
+# ========================
+.env
+*.env
+.env.local
+.env.production
+.env.development
+
+# ========================
+# MISC
+# ========================
+coverage/
