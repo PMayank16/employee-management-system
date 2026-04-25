@@ -7,7 +7,7 @@ Frontend admin/employee panel for Payroll Management with JWT auth and role-base
 ### Prerequisites
 
 - Node.js 18+
-- Spring Boot backend running (default base URL used here: `http://localhost:8000`)
+- Spring Boot backend running (default base URL used here: `https://employee-management-system-1-vppm.onrender.com`)
 
 ### Install dependencies
 
@@ -20,7 +20,7 @@ npm install
 Create `.env` in project root:
 
 ```env
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=https://employee-management-system-1-vppm.onrender.com
 ```
 
 ### Run dev server
@@ -29,7 +29,7 @@ VITE_API_BASE_URL=http://localhost:8000
 npm run dev
 ```
 
-Open: [http://localhost:5173](http://localhost:5173)
+Open: [https://employee-management-system-1-vppm.onrender.com](https://employee-management-system-1-vppm.onrender.com)
 
 ### Production build
 
@@ -92,7 +92,7 @@ npm run preview
 2. `/api/employees/me` returns current user profile with at least `id`, `email`, and `role`.
 3. Role values are case-insensitive (`ADMIN`, `admin`, `ROLE_ADMIN`, etc. are normalized).
 4. Payroll endpoint returns fields needed for UI breakdown (e.g., salary type, base salary, present days, final salary).
-5. Backend CORS allows `http://localhost:5173`.
+5. Backend CORS allows `https://employee-management-system-1-vppm.onrender.com`.
 
 ## Auth and Role Flow
 
@@ -109,7 +109,7 @@ npm run preview
 ### Network Error
 
 - Ensure backend is running on `VITE_API_BASE_URL`.
-- Check CORS settings for `http://localhost:5173`.
+- Check CORS settings for `https://employee-management-system-1-vppm.onrender.com`.
 
 ### 401 / 403 errors
 

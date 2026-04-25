@@ -1,16 +1,16 @@
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 import { monthRangeISO } from "@/utils/date";
 import { onlyEmployeeUsers } from "@/utils/employeeFilter";
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+import { getToken, removeToken } from "@/utils/storage";
 
 export const apiClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
   headers: { "Content-Type": "application/json" },
 });
 
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("payrollpulse_token");
+  const token = getToken();
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -19,26 +19,28 @@ apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
     if (!err.response) {
-      const base = apiClient.defaults.baseURL || "http://localhost:8000";
-      const hint =
-        "Network error: backend unreachable or CORS blocked. " +
-        `Check Spring Boot is running on ${base} and allows origin http://localhost:5173.`;
-      const e = new Error(hint);
+      const e = new Error(
+        `Network error: unable to reach backend at ${apiClient.defaults.baseURL}. Check connectivity, CORS, and backend availability.`
+      );
       e.status = 0;
       return Promise.reject(e);
     }
     const status = err.response?.status;
-    const message =
-      err.response?.data?.message ||
-      err.response?.data?.error ||
-      err.message ||
-      "Request failed";
-    const hint403 =
-      status === 403
-        ? "You do not have permission to access this resource. (403) " +
-          "This usually means your JWT does not contain ROLE_EMPLOYEE/ROLE_ADMIN or Spring Security is not mapping roles correctly."
-        : null;
-    const e = new Error(hint403 || message);
+    const backendMessage = err.response?.data?.message || err.response?.data?.error;
+    let message = backendMessage || err.message || "Request failed";
+
+    if (status === 401) {
+      message = "Session expired or invalid credentials. Please login again.";
+      removeToken();
+    } else if (status >= 500) {
+      message = backendMessage || "Server error. Please try again in a moment.";
+    } else if (status === 403) {
+      message =
+        backendMessage ||
+        "You do not have permission to perform this action.";
+    }
+
+    const e = new Error(message);
     e.status = status;
     e.data = err.response?.data;
     return Promise.reject(e);
