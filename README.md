@@ -6,10 +6,9 @@ A production-ready SaaS MVP built using Spring Boot and Next.js to manage employ
 
 ## 🧑‍💻 Tech Stack
 
-Frontend: Next.js
-Backend: Spring Boot (Java)
-Database: PostgreSQL (migrated from MySQL)
-Deployment: Vercel (Frontend), Render (Backend & DB)
+Frontend: React + Vite (Vercel)
+Backend: Spring Boot (Java) (Render)
+Database: PostgreSQL (Render)
 
 ---
 
@@ -114,8 +113,9 @@ npm run dev
 
 ## 🌍 Live URLs
 
-Frontend: https://your-frontend.vercel.app
-Backend: https://your-backend.onrender.com
+Frontend (Vercel): https://employee-management-system-flax-gamma.vercel.app/
+Backend (Render): https://employee-management-system-1-vppm.onrender.com
+Database (Render PostgreSQL): https://dashboard.render.com
 
 ---
 
