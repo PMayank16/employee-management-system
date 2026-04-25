@@ -75,8 +75,12 @@ public class SecurityConfig {
             List<String> allowedOrigins = List.of(corsOrigins.split(","));
             configuration.setAllowedOrigins(allowedOrigins);
         } else {
-            // Fallback for local development
-            configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+            // Fallback for local development AND production
+            // Add your Vercel frontend URL here as fallback
+            configuration.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://employee-management-system-flax-gamma.vercel.app"
+            ));
         }
         
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
