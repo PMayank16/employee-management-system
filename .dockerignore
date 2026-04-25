@@ -1,0 +1,22 @@
+# Maven build output
+target/
+
+# Git files
+.git
+.gitignore
+
+# IDE files
+.idea
+.vscode
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Node (agar frontend bhi hai project me)
+node_modules/
+
+# Env files (VERY IMPORTANT)
+.env
