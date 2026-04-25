@@ -1,0 +1,11 @@
+# frontend
+frontend/node_modules
+frontend/.next
+
+# backend
+backend/target
+backend/.idea
+
+# system
+.env
+.DS_Store

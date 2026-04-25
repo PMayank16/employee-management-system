@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #800000;
+  --color-primary-light: #a52a2a;
+  --color-primary-dark: #5c0000;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply font-sans text-slate-800 min-h-screen;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #fff5f5 35%,
+        #ffffff 70%,
+        #ffe4e6 100%
+      )
+      fixed;
+  }
+}
